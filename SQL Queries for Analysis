@@ -1,0 +1,52 @@
+SELECT * FROM sales.transactions;
+
+SELECT * FROM sales.customers;
+
+SELECT * FROM sales.markets;
+
+SELECT * FROM sales.date;
+
+SELECT * FROM sales.products;
+
+select count(*) from sales.customers;
+
+select count(*) from sales.transactions; 
+ 
+select * from sales.transactions limit 5;
+
+select * from sales.transactions where market_code="Mark001";
+
+select count(*) from sales.transactions where market_code="Mark001";
+
+select * from sales.transactions where currency="USD";
+
+select sales.transactions.*, sales.date.* from sales.transactions inner join sales.date on sales.transactions.order_date = sales.date.date;
+
+select sales.transactions.*, sales.date.* from sales.transactions inner join sales.date on sales.transactions.order_date = sales.date.date 
+where sales.date.year = 2020;
+
+select sum(sales.transactions.sales_amount) as Total_Sales_2019 from sales.transactions inner join sales.date on sales.transactions.order_date = sales.date.date 
+where sales.date.year = 2019;
+
+select sum(sales.transactions.sales_amount) as Total_Sales_2020 from sales.transactions inner join sales.date on sales.transactions.order_date = sales.date.date 
+where sales.date.year = 2020;
+
+select sum(sales.transactions.sales_amount) as Chennai_sales_2020 from sales.transactions inner join sales.date on sales.transactions.order_date = sales.date.date 
+where sales.date.year = 2020 and sales.transactions.market_code = "Mark001";
+
+select distinct product_code from sales.transactions where market_code = "Mark001";
+
+select * from sales.transactions where sales_amount<=1;
+
+select distinct(sales.transactions.currency) from sales.transactions;
+
+select count(sales.transactions.currency) from sales.transactions where sales.transactions.currency = 'INR';
+
+select count(sales.transactions.currency) from sales.transactions where sales.transactions.currency = 'INR\r';
+
+select count(sales.transactions.currency) from sales.transactions where sales.transactions.currency = 'USD';
+
+select count(sales.transactions.currency) from sales.transactions where sales.transactions.currency = 'USD\r';
+
+Select sum(sales.transactions.sales_amount) from sales.transactions inner join sales.date on sales.transactions.order_date = sales.date.date 
+where sales.date.year = 2018 and sales.transactions.currency = 'INR\r' or sales.transactions.currency = 'USD\r';
